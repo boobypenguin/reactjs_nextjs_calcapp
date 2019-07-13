@@ -1,9 +1,9 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static\\development\\pages\\other.js"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static\\development\\pages\\calc.js"],{
 
-/***/ "./components/Counter.js":
-/*!*******************************!*\
-  !*** ./components/Counter.js ***!
-  \*******************************/
+/***/ "./components/Calc.js":
+/*!****************************!*\
+  !*** ./components/Calc.js ***!
+  \****************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -26,48 +26,68 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _jsxFileName = "D:\\programming\\Reactjs_Nextjs_sample\\reactjs_nextjs_calcapp\\components\\Counter.js";
+var _jsxFileName = "D:\\programming\\Reactjs_Nextjs_sample\\reactjs_nextjs_calcapp\\components\\Calc.js";
 
 
 
-var Counter =
+var Calc =
 /*#__PURE__*/
 function (_Component) {
-  Object(_babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_5__["default"])(Counter, _Component);
+  Object(_babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_5__["default"])(Calc, _Component);
 
-  function Counter(props) {
+  function Calc(props) {
     var _this;
 
-    Object(_babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, Counter);
+    Object(_babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, Calc);
 
-    _this = Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__["default"])(this, Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__["default"])(Counter).call(this, props));
+    _this = Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__["default"])(this, Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__["default"])(Calc).call(this, props));
 
     Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__["default"])(_this), "style", {
       fontSize: "12pt",
-      padding: "5px 15px"
+      padding: "5px 10px"
     });
 
+    _this.state = {
+      input: ''
+    };
+    _this.onChange = _this.onChange.bind(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__["default"])(_this));
+    _this.onKeyPress = _this.onKeyPress.bind(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__["default"])(_this));
     _this.doAction = _this.doAction.bind(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__["default"])(_this));
     _this.reset = _this.reset.bind(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__["default"])(_this));
     return _this;
   }
 
-  Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(Counter, [{
+  Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(Calc, [{
+    key: "onChange",
+    value: function onChange(e) {
+      this.setState({
+        input: e.target.value
+      });
+    }
+  }, {
+    key: "onKeyPress",
+    value: function onKeyPress(e) {
+      if (event.keyCode == 13) {
+        this.doAction(e);
+      }
+    }
+  }, {
     key: "doAction",
     value: function doAction(e) {
-      if (e.shiftKey) {
-        return this.props.dispatch({
-          type: 'DECREMENT'
-        });
-      } else {
-        return this.props.dispatch({
-          type: 'INCREMENT'
-        });
-      }
+      this.setState({
+        input: ''
+      });
+      return this.props.dispatch({
+        type: 'ENTER',
+        value: this.state.input
+      });
     }
   }, {
     key: "reset",
     value: function reset() {
+      this.setState({
+        input: ''
+      });
       return this.props.dispatch({
         type: 'RESET'
       });
@@ -75,45 +95,107 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
+      var result = [];
+      var n = this.props.data.length;
+
+      for (var i = 0; i < n; i++) {
+        result.push(react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("tr", {
+          key: i,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 61
+          },
+          __self: this
+        }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("th", {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 62
+          },
+          __self: this
+        }, this.props.data[i]), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("td", {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 63
+          },
+          __self: this
+        }, this.props.number[i])));
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 35
+          lineNumber: 67
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("p", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 36
+          lineNumber: 68
         },
         __self: this
-      }, this.props.message, ": ", this.props.count), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("button", {
+      }, "TOTAL: ", this.props.result), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("input", {
+        type: "text",
+        style: this.style,
+        size: "40",
+        value: this.state.input,
+        onChange: this.onChange,
+        onKeyPress: this.onKeyPress,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 69
+        },
+        __self: this
+      }), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("button", {
         style: this.style,
         onClick: this.doAction,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 37
+          lineNumber: 72
         },
         __self: this
-      }, "Count"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("button", {
+      }, "Enter"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("button", {
         style: this.style,
         onClick: this.reset,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 39
+          lineNumber: 74
         },
         __self: this
-      }, "Reset"));
+      }, "Reset"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("hr", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 76
+        },
+        __self: this
+      }), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("table", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 77
+        },
+        __self: this
+      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("tbody", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 78
+        },
+        __self: this
+      }, result)), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("p", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 80
+        },
+        __self: this
+      }, this.props.message));
     }
   }]);
 
-  return Counter;
+  return Calc;
 }(react__WEBPACK_IMPORTED_MODULE_7__["Component"]);
 
-Counter = Object(react_redux__WEBPACK_IMPORTED_MODULE_8__["connect"])(function (state) {
+Calc = Object(react_redux__WEBPACK_IMPORTED_MODULE_8__["connect"])(function (state) {
   return state;
-})(Counter);
-/* harmony default export */ __webpack_exports__["default"] = (Counter);
+})(Calc);
+/* harmony default export */ __webpack_exports__["default"] = (Calc);
 
 /***/ }),
 
@@ -334,7 +416,7 @@ function (_Component) {
         },
         __self: this
       }), this.props.children, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_components_Footer__WEBPACK_IMPORTED_MODULE_8__["default"], {
-        footer: "copyright SYODA-Tuyano.",
+        footer: "copyright boobypenguin.",
         __source: {
           fileName: _jsxFileName,
           lineNumber: 22
@@ -7014,21 +7096,21 @@ exports.formatWithValidation = formatWithValidation;
 
 /***/ }),
 
-/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fother&absolutePagePath=D%3A%5Cprogramming%5CReactjs_Nextjs_sample%5Creactjs_nextjs_calcapp%5Cpages%5Cother.js!./":
-/*!********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fother&absolutePagePath=D%3A%5Cprogramming%5CReactjs_Nextjs_sample%5Creactjs_nextjs_calcapp%5Cpages%5Cother.js ***!
-  \********************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fcalc&absolutePagePath=D%3A%5Cprogramming%5CReactjs_Nextjs_sample%5Creactjs_nextjs_calcapp%5Cpages%5Ccalc.js!./":
+/*!******************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fcalc&absolutePagePath=D%3A%5Cprogramming%5CReactjs_Nextjs_sample%5Creactjs_nextjs_calcapp%5Cpages%5Ccalc.js ***!
+  \******************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-    (window.__NEXT_P=window.__NEXT_P||[]).push(["/other", function() {
-      var page = __webpack_require__(/*! ./pages/other.js */ "./pages/other.js")
+    (window.__NEXT_P=window.__NEXT_P||[]).push(["/calc", function() {
+      var page = __webpack_require__(/*! ./pages/calc.js */ "./pages/calc.js")
       if(true) {
-        module.hot.accept(/*! ./pages/other.js */ "./pages/other.js", function() {
-          if(!next.router.components["/other"]) return
-          var updatedPage = __webpack_require__(/*! ./pages/other.js */ "./pages/other.js")
-          next.router.update("/other", updatedPage.default || updatedPage)
+        module.hot.accept(/*! ./pages/calc.js */ "./pages/calc.js", function() {
+          if(!next.router.components["/calc"]) return
+          var updatedPage = __webpack_require__(/*! ./pages/calc.js */ "./pages/calc.js")
+          next.router.update("/calc", updatedPage.default || updatedPage)
         })
       }
       return { page: page.default || page }
@@ -13610,10 +13692,10 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./pages/other.js":
-/*!************************!*\
-  !*** ./pages/other.js ***!
-  \************************/
+/***/ "./pages/calc.js":
+/*!***********************!*\
+  !*** ./pages/calc.js ***!
+  \***********************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -13624,8 +13706,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Layout */ "./components/Layout.js");
-/* harmony import */ var _components_Counter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Counter */ "./components/Counter.js");
-var _jsxFileName = "D:\\programming\\Reactjs_Nextjs_sample\\reactjs_nextjs_calcapp\\pages\\other.js";
+/* harmony import */ var _components_Calc__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Calc */ "./components/Calc.js");
+var _jsxFileName = "D:\\programming\\Reactjs_Nextjs_sample\\reactjs_nextjs_calcapp\\pages\\calc.js";
 
 
 
@@ -13645,14 +13727,14 @@ var p = {
 };
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Layout__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    header: "Other",
-    title: "Other page.",
+    header: "Calc",
+    title: "calculator",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 24
     },
     __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Counter__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Calc__WEBPACK_IMPORTED_MODULE_3__["default"], {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 25
@@ -13707,18 +13789,18 @@ var _jsxFileName = "D:\\programming\\Reactjs_Nextjs_sample\\reactjs_nextjs_calca
     lineNumber: 4
   },
   __self: undefined
-}, "\n  body {\n    margin:10px;\n    padding:5px;\n    color:#669;\n  }\n  header {\n    font-size:64pt;\n    font-weight:bold;\n    text-align:right;\n    letter-spacing:-8px;\n    color:#ddddff;\n    margin:-32px 5px;\n  }\n  footer {\n    color:#99c;\n    font-size:12pt;\n    text-align:right;\n    border-bottom:1px solid #99c;\n    margin:50px 0px 10px 0px;\n    position: relative;\n    bottom: 10px;\n    right: 10px;\n    left: 10px;\n  }\n  h1 {\n    font-size:22pt;\n    font-weight:bold;\n    text-align:left;\n    letter-spacing:0px;\n    color:#77a;\n    margin:-50px 0px 50px 0px;\n  }\n  p {\n      margin:0px;\n      color:#669;\n      font-size:16pt;\n  }\n"));
+}, "\n  body {\n    margin:10px;\n    padding:5px;\n    color:#669;\n  }\n  header {\n    font-size:64pt;\n    font-weight:bold;\n    text-align:right;\n    letter-spacing:-8px;\n    color:#ddddff;\n    margin:-32px 5px;\n  }\n  footer {\n    color:#99c;\n    font-size:12pt;\n    text-align:right;\n    border-bottom:1px solid #99c;\n    margin:50px 0px 10px 0px;\n    position: relative;\n    bottom: 10px;\n    right: 10px;\n    left: 10px;\n  }\n  h1 {\n    font-size:22pt;\n    font-weight:bold;\n    text-align:left;\n    letter-spacing:0px;\n    color:#77a;\n    margin:-50px 0px 50px 0px;\n  }\n  p {\n    margin:0px;\n    color:#669;\n    font-size:16pt;\n}\nhr {\n  margin:25px 0px;\n}\ntr {\n  margin:0px;\n}\nth {\n  font-size:14pt;\n  font-weight:plain;\n  text-align:left;\n  padding:0px 20px;\n  margin:0px;\n  border-bottom:1px solid gray;\n}\ntd {\n  font-size:14pt;\n  font-weight:plain;\n  text-align:right;\n  padding:0px 20px;\n  margin:0px;\n  border-bottom:1px solid gray;\n}\n"));
 
 /***/ }),
 
-/***/ 2:
-/*!************************************************************************************************************************************************************!*\
-  !*** multi next-client-pages-loader?page=%2Fother&absolutePagePath=D%3A%5Cprogramming%5CReactjs_Nextjs_sample%5Creactjs_nextjs_calcapp%5Cpages%5Cother.js ***!
-  \************************************************************************************************************************************************************/
+/***/ 1:
+/*!**********************************************************************************************************************************************************!*\
+  !*** multi next-client-pages-loader?page=%2Fcalc&absolutePagePath=D%3A%5Cprogramming%5CReactjs_Nextjs_sample%5Creactjs_nextjs_calcapp%5Cpages%5Ccalc.js ***!
+  \**********************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2Fother&absolutePagePath=D%3A%5Cprogramming%5CReactjs_Nextjs_sample%5Creactjs_nextjs_calcapp%5Cpages%5Cother.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fother&absolutePagePath=D%3A%5Cprogramming%5CReactjs_Nextjs_sample%5Creactjs_nextjs_calcapp%5Cpages%5Cother.js!./");
+module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2Fcalc&absolutePagePath=D%3A%5Cprogramming%5CReactjs_Nextjs_sample%5Creactjs_nextjs_calcapp%5Cpages%5Ccalc.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fcalc&absolutePagePath=D%3A%5Cprogramming%5CReactjs_Nextjs_sample%5Creactjs_nextjs_calcapp%5Cpages%5Ccalc.js!./");
 
 
 /***/ }),
@@ -13734,5 +13816,5 @@ module.exports = dll_7aff549c98b978433226;
 
 /***/ })
 
-},[[2,"static/runtime/webpack.js"]]]);
-//# sourceMappingURL=other.js.map
+},[[1,"static/runtime/webpack.js"]]]);
+//# sourceMappingURL=calc.js.map
