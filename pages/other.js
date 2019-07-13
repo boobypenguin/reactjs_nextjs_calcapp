@@ -1,4 +1,5 @@
-import Link from 'next/link';
+import Link from 'next/link'
+import Layout from '../components/Layout';
 
 
 const h1 = {
@@ -18,13 +19,14 @@ const p = {
 }
 
 
-export default () => <div>
-    <h1 style={h1}>Next.js</h1>
-    <p style={p}>This is Other page.</p>
-    <hr />
-    <div>
-        <Link href="/">
-            <a>&lt;&lt; Back to Index page</a>
-        </Link>
-    </div>
-</div>
+export default () => (
+    <Layout header="Other" title="Other page.">
+        <p>This is Other page.</p>
+        <hr />
+        <div>
+            <Link href="/">
+                <button>&lt;&lt; Back to Top</button>
+            </Link>
+        </div>
+    </Layout>
+)
